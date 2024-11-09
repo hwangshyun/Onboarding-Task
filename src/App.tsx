@@ -1,5 +1,3 @@
-// src/App.tsx
-import React from 'react';
 import { useTodos, useTodo } from './hooks/useTodos';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
