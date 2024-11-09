@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import React from 'react';
+import { useTodos, useTodo } from './hooks/useTodos';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-function App() {
-  const [count, setCount] = useState(0)
+const queryClient = new QueryClient();
+
+const App = () => {
+  // 전체 todos 데이터 가져오기
+  const { data: todos, isLoading: isTodosLoading } = useTodos();
+
+  // 단일 todo 데이터 가져오기 (예: id = 1)
+  const { data: todo, isLoading: isTodoLoading } = useTodo(1);
+
+  if (isTodosLoading || isTodoLoading) return <div>Loading...</div>;
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+        <h1>Todos List</h1>
+        <ul>
+          {todos?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+        </ul>
 
-export default App
+        <h2>Single Todo (ID: 1)</h2>
+        {todo && (
+          <div>
+            <p>ID: {todo.id}</p>
+            <p>Title: {todo.title}</p>
+            <p>Completed: {todo.completed ? 'Yes' : 'No'}</p>
+          </div>
+        )}
+      </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+};
+
+export default App;
