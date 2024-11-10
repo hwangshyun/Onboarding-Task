@@ -14,17 +14,14 @@ const Signup = () => {
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
   const navigate = useNavigate();
 
-  // 회원가입 mutation
   const signupMutation = useMutation({
     mutationFn: signupUser,
     onSuccess: async (data) => {
       alert(data.message);
 
-      // 회원가입 성공 후 로그인 요청
       try {
         const loginResponse = await loginUser({ id, password });
-        setAccessToken(loginResponse.accessToken); // 토큰 저장
-        navigate('/'); // 메인 페이지로 이동
+        setAccessToken(loginResponse.accessToken);
       } catch (error) {
         alert('자동 로그인에 실패했습니다.');
       }
