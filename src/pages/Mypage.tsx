@@ -7,6 +7,7 @@ import { UserProfile, UpdateProfileData } from '../types';
 const Mypage = () => {
   const accessToken = useAuthStore((state) => state.accessToken);
   const [nickname, setNickname] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null); // URL 상태 추가
   const [avatar, setAvatar] = useState<File | null>(null);
 
   const { data, error, isLoading, refetch } = useQuery<UserProfile>({
@@ -18,6 +19,7 @@ const Mypage = () => {
   useEffect(() => {
     if (data) {
       setNickname(data.nickname);
+      setAvatarUrl(data.avatar || null); // 불러온 avatar URL을 설정
     }
   }, [data]);
 
@@ -36,9 +38,7 @@ const Mypage = () => {
 
   const handleProfileUpdate = (e: React.FormEvent) => {
     e.preventDefault();
-    if (nickname) {
-      updateProfileMutation.mutate({ nickname, avatar: avatar ?? undefined });
-    }
+    updateProfileMutation.mutate({ nickname, avatar: avatar ?? undefined });
   };
 
   if (isLoading) return <div className="text-center">Loading...</div>;
@@ -50,8 +50,8 @@ const Mypage = () => {
       
       <div className="flex justify-center mb-6">
         <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
-          {data?.avatar ? (
-            <img src={data.avatar} alt="Avatar" className="object-cover w-full h-full" />
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="Avatar" className="object-cover w-full h-full" />
           ) : (
             <span className="text-gray-600">No Avatar</span>
           )}
@@ -92,11 +92,11 @@ const Mypage = () => {
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Profile Info:</h2>
         <p className="text-gray-700 mb-2"><strong>ID:</strong> {data?.id}</p>
-        <p className="text-gray-700 mb-2"><strong>Nickname:</strong> {data?.nickname}</p>
+        <p className="text-gray-700 mb-2"><strong>Nickname:</strong> {nickname}</p>
         <div className="flex items-center">
           <strong className="text-gray-700 mr-2">Avatar:</strong>
-          {data?.avatar ? (
-            <img src={data.avatar} alt="avatar" className="w-16 h-16 rounded-full" />
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="avatar" className="w-16 h-16 rounded-full" />
           ) : (
             <span className="text-gray-500">No Avatar</span>
           )}

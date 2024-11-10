@@ -53,61 +53,69 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg space-y-4">
-        <h2 className="text-2xl font-bold text-center mb-6">회원가입</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-indigo-500">
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg space-y-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">회원가입</h2>
 
         <div className="flex flex-col">
-          <label htmlFor="id" className="mb-1 font-semibold text-gray-700">아이디</label>
+          <label htmlFor="id" className="mb-1 text-gray-600 font-semibold">아이디</label>
           <input
             id="id"
             type="text"
             value={id}
             onChange={(e) => setId(e.target.value)}
             placeholder="아이디"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="password" className="mb-1 font-semibold text-gray-700">비밀번호</label>
+          <label htmlFor="password" className="mb-1 text-gray-600 font-semibold">비밀번호</label>
           <input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="비밀번호"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="nickname" className="mb-1 font-semibold text-gray-700">닉네임</label>
+          <label htmlFor="nickname" className="mb-1 text-gray-600 font-semibold">닉네임</label>
           <input
             id="nickname"
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             placeholder="닉네임"
-            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="avatar" className="mb-1 font-semibold text-gray-700">프로필 사진 (선택)</label>
+          <label htmlFor="avatar" className="mb-1 text-gray-600 font-semibold">프로필 사진 (선택)</label>
           <input
             id="avatar"
             type="file"
             onChange={handleAvatarChange}
-            className="border border-gray-300 rounded-md px-2 py-1"
+            className="border border-gray-300 rounded-lg px-2 py-1"
           />
         </div>
 
         <button
           type="submit"
-          className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
+          className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
         >
           회원가입
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate('/login')}
+          className="w-full py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
+        >
+          로그인 페이지로 이동
         </button>
       </form>
     </div>

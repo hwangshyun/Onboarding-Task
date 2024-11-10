@@ -62,6 +62,14 @@ const Login = () => {
         >
           로그인
         </button>
+
+        <button
+          type="button"
+          onClick={() => navigate('/signup')}
+          className="w-full py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors"
+        >
+          회원가입
+        </button>
       </form>
     </div>
   );
