@@ -17,7 +17,7 @@ export const signupUser = async (data: SignupData): Promise<{ message: string; s
   return response.data;
 };
 
-// 환경 변수 값 확인용 콘솔 출력
+
 console.log("API URL:", API_URL);
 
 interface LoginData {

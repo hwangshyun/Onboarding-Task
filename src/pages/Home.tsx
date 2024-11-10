@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className="flex items-center justify-center min-h-screen h-screen w-screen bg-gradient-to-r from-blue-500 to-purple-500 p-4">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition duration-500 hover:scale-105">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">Welcome to Our Site</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">반가워요!</h1>
         <p className="text-base md:text-lg text-gray-600 text-center mb-6">
           {accessToken ? '마이페이지로 이동하세요.' : '로그인하여 더 많은 기능을 이용하세요.'}
         </p>

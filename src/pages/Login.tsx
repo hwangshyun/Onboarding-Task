@@ -15,7 +15,7 @@ const Login = () => {
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
       alert('로그인 성공');
-      navigate('/'); // 보호된 페이지로 리다이렉트
+      navigate('/');
     },
     onError: () => {
       alert('로그인에 실패했습니다.');

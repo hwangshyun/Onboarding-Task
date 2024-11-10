@@ -42,25 +42,25 @@ const Mypage = () => {
   };
 
   if (isLoading) return <div className="text-center">Loading...</div>;
-  if (error) return <div className="text-center text-red-500">Error loading profile</div>;
+  if (error) return <div className="text-center text-red-500">프로필을 불러오지못함</div>;
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
-      <h1 className="text-3xl font-bold text-center mb-6">My Profile</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">내 프로필</h1>
       
       <div className="flex justify-center mb-6">
         <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
           {avatarUrl ? (
             <img src={avatarUrl} alt="Avatar" className="object-cover w-full h-full" />
           ) : (
-            <span className="text-gray-600">No Avatar</span>
+            <span className="text-gray-600">프로필 사진이 없습니다.</span>
           )}
         </div>
       </div>
       
       <form onSubmit={handleProfileUpdate} className="space-y-6">
         <div className="flex flex-col">
-          <label htmlFor="nickname" className="text-sm font-semibold">Nickname</label>
+          <label htmlFor="nickname" className="text-sm font-semibold">닉네임</label>
           <input
             id="nickname"
             type="text"
@@ -72,7 +72,7 @@ const Mypage = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="avatar" className="text-sm font-semibold">Change Avatar</label>
+          <label htmlFor="avatar" className="text-sm font-semibold">프로필사진 변경</label>
           <input
             id="avatar"
             type="file"
@@ -90,15 +90,15 @@ const Mypage = () => {
       </form>
 
       <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Profile Info:</h2>
-        <p className="text-gray-700 mb-2"><strong>ID:</strong> {data?.id}</p>
-        <p className="text-gray-700 mb-2"><strong>Nickname:</strong> {nickname}</p>
+        <h2 className="text-xl font-semibold mb-4">내 프로필</h2>
+        <p className="text-gray-700 mb-2"><strong>아이디</strong> {data?.id}</p>
+        <p className="text-gray-700 mb-2"><strong>닉네임 </strong> {nickname}</p>
         <div className="flex items-center">
-          <strong className="text-gray-700 mr-2">Avatar:</strong>
+          <strong className="text-gray-700 mr-2">프로필 사진</strong>
           {avatarUrl ? (
             <img src={avatarUrl} alt="avatar" className="w-16 h-16 rounded-full" />
           ) : (
-            <span className="text-gray-500">No Avatar</span>
+            <span className="text-gray-500">프로필 사진이 없습니다.</span>
           )}
         </div>
       </div>
