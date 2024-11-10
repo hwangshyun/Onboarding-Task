@@ -7,13 +7,13 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  accessToken: localStorage.getItem('accessToken'), // 초기화 시 로컬 스토리지 값 가져오기
+  accessToken: localStorage.getItem('accessToken'),
   setAccessToken: (token) => {
-    localStorage.setItem('accessToken', token); // 로컬 스토리지에 토큰 저장
+    localStorage.setItem('accessToken', token); 
     set({ accessToken: token });
   },
   logout: () => {
-    localStorage.removeItem('accessToken'); // 로컬 스토리지에서 토큰 제거
+    localStorage.removeItem('accessToken');
     set({ accessToken: null });
   },
 }));
