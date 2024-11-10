@@ -1,39 +1,25 @@
-import { useTodos, useTodo } from './hooks/useTodos';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const queryClient = new QueryClient();
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Mypage from './pages/Mypage';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
-  // 전체 todos 데이터 가져오기
-  const { data: todos, isLoading: isTodosLoading } = useTodos();
-
-  // 단일 todo 데이터 가져오기 (예: id = 1)
-  const { data: todo, isLoading: isTodoLoading } = useTodo(1);
-
-  if (isTodosLoading || isTodoLoading) return <div>Loading...</div>;
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <h1>Todos List</h1>
-        <ul>
-          {todos?.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
-          ))}
-        </ul>
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* PrivateRoute를 통해 보호된 경로 설정 */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/mypage" element={<Mypage />} />
+        </Route>
 
-        <h2>Single Todo (ID: 1)</h2>
-        {todo && (
-          <div>
-            <p>ID: {todo.id}</p>
-            <p>Title: {todo.title}</p>
-            <p>Completed: {todo.completed ? 'Yes' : 'No'}</p>
-          </div>
-        )}
-      </div>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+        {/* 모든 다른 경로는 로그인 페이지로 리다이렉트 */}
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 };
 
