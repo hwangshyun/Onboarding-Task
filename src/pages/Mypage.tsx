@@ -47,6 +47,20 @@ const Mypage = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
       <h1 className="text-3xl font-bold text-center mb-6">내 프로필</h1>
+
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">내 프로필</h2>
+        <p className="text-gray-700 mb-2"><strong>아이디</strong> {data?.id}</p>
+        <p className="text-gray-700 mb-2"><strong>닉네임 </strong> {nickname}</p>
+        <div className="flex items-center">
+          <strong className="text-gray-700 mr-2">프로필 사진</strong>
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="avatar" className="w-16 h-16 rounded-full" />
+          ) : (
+            <span className="text-gray-500">프로필 사진이 없습니다.</span>
+          )}
+        </div>
+      </div>
       
       <div className="flex justify-center mb-6">
         <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
@@ -89,19 +103,6 @@ const Mypage = () => {
         </button>
       </form>
 
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">내 프로필</h2>
-        <p className="text-gray-700 mb-2"><strong>아이디</strong> {data?.id}</p>
-        <p className="text-gray-700 mb-2"><strong>닉네임 </strong> {nickname}</p>
-        <div className="flex items-center">
-          <strong className="text-gray-700 mr-2">프로필 사진</strong>
-          {avatarUrl ? (
-            <img src={avatarUrl} alt="avatar" className="w-16 h-16 rounded-full" />
-          ) : (
-            <span className="text-gray-500">프로필 사진이 없습니다.</span>
-          )}
-        </div>
-      </div>
     </div>
   );
 };
