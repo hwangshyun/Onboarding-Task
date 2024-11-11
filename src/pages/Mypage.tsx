@@ -7,7 +7,7 @@ import { UserProfile, UpdateProfileData } from '../types';
 const Mypage = () => {
   const accessToken = useAuthStore((state) => state.accessToken);
   const [nickname, setNickname] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null); // URL 상태 추가
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null); 
   const [avatar, setAvatar] = useState<File | null>(null);
 
   const { data, error, isLoading, refetch } = useQuery<UserProfile>({
@@ -19,7 +19,7 @@ const Mypage = () => {
   useEffect(() => {
     if (data) {
       setNickname(data.nickname);
-      setAvatarUrl(data.avatar || null); // 불러온 avatar URL을 설정
+      setAvatarUrl(data.avatar || null);
     }
   }, [data]);
 
@@ -28,8 +28,8 @@ const Mypage = () => {
       updateUserProfile(accessToken!, updatedData),
     onSuccess: () => {
       alert('프로필이 성공적으로 업데이트되었습니다.');
-      refetch(); // 업데이트 후 프로필 정보를 다시 가져옴
-      setAvatar(null); // 프로필 이미지 초기화
+      refetch();
+      setAvatar(null); 
     },
     onError: () => {
       alert('프로필 업데이트에 실패했습니다.');
@@ -41,7 +41,7 @@ const Mypage = () => {
     updateProfileMutation.mutate({ nickname, avatar: avatar ?? undefined });
   };
 
-  if (isLoading) return <div className="text-center">Loading...</div>;
+  if (isLoading) return <div className="text-center">로딩중...</div>;
   if (error) return <div className="text-center text-red-500">프로필을 불러오지못함</div>;
 
   return (
@@ -85,7 +85,7 @@ const Mypage = () => {
           type="submit"
           className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
         >
-          Update Profile
+         프로필 수정하기
         </button>
       </form>
 
